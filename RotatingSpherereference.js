@@ -811,17 +811,9 @@ const RotatingSphere = () => {
     initCubeSphere(sphereRadius, null, fallbackMaterial);
   }, [calculateSphereSize, initCubeSphere]);
 
-  // 构建视频URL - 处理完整URL和相对路径
+  // 构建视频URL - 处理GitHub Pages基础路径
   const buildVideoUrl = useCallback((filePath) => {
-    console.log('🎬 处理视频路径:', filePath);
-    
-    // 如果已经是完整URL（以http://或https://开头），直接返回
-    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-      console.log('✅ 检测到完整URL，直接使用:', filePath);
-      return filePath;
-    }
-    
-    // 如果是相对路径，进行传统的路径构建
+    // 在开发环境中，忽略process.env.PUBLIC_URL避免路径问题
     const isDevelopment = process.env.NODE_ENV === 'development';
     
     let url;
@@ -834,8 +826,9 @@ const RotatingSphere = () => {
       url = `${publicUrl}/${filePath}`;
     }
     
-    console.log('🎬 构建的相对路径URL:', url);
+    console.log('🎬 构建视频URL:', url);
     console.log('🌐 环境:', isDevelopment ? '开发环境' : '生产环境');
+    console.log('🔗 完整URL:', `${window.location.origin}${url}`);
     return url;
   }, []);
 
