@@ -3,7 +3,7 @@
 .inspiration-item-enter {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .inspiration-item-enter-active {
@@ -11,54 +11,54 @@
   transform: translateY(0);
 }
 
-/* 三列不同的延迟时间 */
+/* 三列不同的延迟时间 - 加快速度 */
 .column-1 {
   transition-delay: 0ms;
 }
 
 .column-2 {
-  transition-delay: 150ms;
+  transition-delay: 80ms;
 }
 
 .column-3 {
-  transition-delay: 300ms;
+  transition-delay: 160ms;
 }
 
-/* 为每一行的项目添加额外的延迟，创造更流畅的波浪效果 */
+/* 为每一行的项目添加额外的延迟，创造更流畅的波浪效果 - 减少延迟 */
 .inspiration-item-enter:nth-child(4) { 
-  transition-delay: 450ms; 
+  transition-delay: 240ms; 
 }
 
 .inspiration-item-enter:nth-child(5) { 
-  transition-delay: 600ms; 
+  transition-delay: 320ms; 
 }
 
 .inspiration-item-enter:nth-child(6) { 
-  transition-delay: 750ms; 
+  transition-delay: 400ms; 
 }
 
 .inspiration-item-enter:nth-child(7) { 
-  transition-delay: 900ms; 
+  transition-delay: 480ms; 
 }
 
 .inspiration-item-enter:nth-child(8) { 
-  transition-delay: 1050ms; 
+  transition-delay: 560ms; 
 }
 
 .inspiration-item-enter:nth-child(9) { 
-  transition-delay: 1200ms; 
+  transition-delay: 640ms; 
 }
 
 .inspiration-item-enter:nth-child(10) { 
-  transition-delay: 1350ms; 
+  transition-delay: 720ms; 
 }
 
 .inspiration-item-enter:nth-child(11) { 
-  transition-delay: 1500ms; 
+  transition-delay: 800ms; 
 }
 
 .inspiration-item-enter:nth-child(12) { 
-  transition-delay: 1650ms; 
+  transition-delay: 880ms; 
 }
 
 /* 增强视觉效果 */
