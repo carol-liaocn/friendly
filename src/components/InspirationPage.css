@@ -3,7 +3,7 @@
 .inspiration-item-enter {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.5s cubic-bezier(0.42, 0, 1, 1);
 }
 
 .inspiration-item-enter-active {
@@ -17,11 +17,11 @@
 }
 
 .column-2 {
-  transition-delay: 80ms;
+  transition-delay: 50ms;
 }
 
 .column-3 {
-  transition-delay: 160ms;
+  transition-delay: 100ms;
 }
 
 /* 为每一行的项目添加额外的延迟，创造更流畅的波浪效果 - 减少延迟 */
@@ -88,5 +88,5 @@
 /* 悬停效果增强 */
 .inspiration-item-enter-active:hover {
   transform: translateY(-4px) scale(1.02);
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
 } 
