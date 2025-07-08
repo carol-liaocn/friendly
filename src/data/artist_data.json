@@ -1,0 +1,361 @@
+[
+  {
+    "id": 1,
+    "name": "Lena Mono",
+    "categories": [
+      "Digital",
+      "Typography"
+    ],
+    "description": "https://www.instagram.com/lenaweber404/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/dia-studio-2/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/dia-studio-2/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/dia-studio-2/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Dia Studio",
+    "categories": [
+      "Generative Art",
+      "AIGC"
+    ],
+    "description": "https://www.instagram.com/dia_studio/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/lenaweber-1/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/lenaweber-1/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/lenaweber-1/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Daniel Shiffman",
+    "categories": [
+      "Digital",
+      "Motion",
+      "Generative Art"
+    ],
+    "description": "https://www.instagram.com/the.coding.train/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/the-coding-train-3/ds1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/the-coding-train-3/ds2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/the-coding-train-3/ds3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Amuki Estudio",
+    "categories": [
+      "Typography",
+      "Graphic",
+      "AIGC"
+    ],
+    "description": "https://www.instagram.com/amuki.ec/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/amuki-4/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/amuki-4/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/amuki-4/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Tim Rodenbröker",
+    "categories": [
+      "Motion",
+      "Graphic",
+      "Generative Art",
+      "AIGC"
+    ],
+    "description": "https://www.instagram.com/tim_rodenbroeker/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/tim_rodenbroeker-5/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/tim_rodenbroeker-5/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/tim_rodenbroeker-5/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Kiel Mutschelknaus",
+    "categories": [
+      "Motion",
+      "Graphic",
+      "Generative Art"
+    ],
+    "description": "https://www.instagram.com/kiel.d.m/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/kiel-6/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/kiel-6/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/kiel-6/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Casey Reas",
+    "categories": [
+      "Digital",
+      "Motion",
+      "Generative Art"
+    ],
+    "description": "https://www.instagram.com/reas/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/caseyreas-7/1.jpeg"
+      },
+      {
+        "id": 2,
+        "image": "/images/caseyreas-7/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/caseyreas-7/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Ksawery Komputery",
+    "categories": [
+      "Digital",
+      "Motion",
+      "Generative Art"
+    ],
+    "description": "https://www.instagram.com/ksawerykomputery/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/ksawerykomputery-8/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/ksawerykomputery-8/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/ksawerykomputery-8/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Zach Lieberman",
+    "categories": [
+      "Digital",
+      "Motion",
+      "Generative Art"
+    ],
+    "description": "https://www.instagram.com/zach.lieberman/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/zach-lieberman-9/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/zach-lieberman-9/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/zach-lieberman-9/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Alex Turner",
+    "categories": [
+      "Digital",
+      "Motion",
+      "Generative Art"
+    ],
+    "description": "https://www.instagram.com/turner.motion/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/turner-motion-10/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/turner-motion-10/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/turner-motion-10/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "roy",
+    "categories": [
+      "Digital",
+      "Graphic",
+      "Generative Art"
+    ],
+    "description": "https://www.instagram.com/_roygerritsen/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/roygerritsen-11/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/roygerritsen-11/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/roygerritsen-11/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Sakamoto Shunta",
+    "categories": [
+      "Digital",
+      "Graphic",
+      "Generative Art"
+    ],
+    "description": "https://www.instagram.com/sakamoto.app/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/sakamoto-12/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/sakamoto-12/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/sakamoto-12/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Eager Zhang",
+    "categories": [
+      "Motion",
+      "Graphic",
+      "Typography"
+    ],
+    "description": "https://www.instagram.com/eagerzliterally/",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/eagerzliterally-13/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/images/eagerzliterally-13/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/images/eagerzliterally-13/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "鸽就是Artist",
+    "categories": [
+      "Motion",
+      "Graphic",
+      "Generative Art"
+    ],
+    "description": "https://www.xiaohongshu.com/user/profile/5c08bed40000000007011a7f",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/pigeon-artist-14/1.mov"
+      },
+      {
+        "id": 2,
+        "image": "/images/pigeon-artist-14/2.mov"
+      },
+      {
+        "id": 3,
+        "image": "/images/pigeon-artist-14/3.mov"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Raven Kwok",
+    "categories": [
+      "Digital",
+      "Motion",
+      "Generative Art"
+    ],
+    "description": "https://www.xiaohongshu.com/user/profile/63cbd61b0000000026010d19",
+    "works": [
+      {
+        "id": 1,
+        "image": "/images/raven-kwok-15/1.mov"
+      },
+      {
+        "id": 2,
+        "image": "/images/raven-kwok-15/2.mov"
+      },
+      {
+        "id": 3,
+        "image": "/images/raven-kwok-15/3.mov"
+      }
+    ]
+  }
+]

@@ -1,0 +1,172 @@
+/* 首页全屏容器 */
+.homepage {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #131313; /* 与Three.js场景背景一致 */
+  cursor: grab;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+.homepage:active {
+  cursor: grabbing;
+}
+
+/* 右上角REDesign标志 - 与左上角logo大小和位置对应 */
+.redesign-logo {
+  position: fixed;
+  top: 32px; /* 与左侧py-8 (32px) 对应 */
+  right: 32px; /* 与左侧px-8 (32px) 对应 */
+  height: 24px; /* 与左侧text-2xl (24px) 一致 */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.redesign-logo img {
+  height: 100%;
+  width: auto;
+  filter: brightness(0) invert(1); /* 将SVG转为白色 */
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.redesign-logo:hover img {
+  opacity: 1;
+}
+
+/* 球体容器样式 - 全屏居中，不受导航栏影响 */
+.sphere-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1; /* 确保在导航栏下方 */
+}
+
+/* Three.js canvas样式优化 */
+.sphere-container canvas {
+  display: block !important;
+  outline: none;
+  cursor: inherit;
+}
+
+/* 球体占位符样式（仅在加载时显示） */
+.sphere-placeholder {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #FFD700, #FFA500, #FF8C00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #131313;
+  font-weight: bold;
+  animation: rotate 10s linear infinite, pulse 3s ease-in-out infinite;
+  opacity: 0; /* 默认隐藏，只在Three.js加载失败时显示 */
+  transition: opacity 0.3s ease;
+}
+
+.sphere-placeholder.loading {
+  opacity: 1;
+}
+
+/* 旋转和脉冲动画 */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    transform: scale(1) rotate(var(--rotation, 0deg));
+  }
+  50% { 
+    box-shadow: 0 0 60px rgba(255, 215, 0, 0.6);
+    transform: scale(1.02) rotate(var(--rotation, 180deg));
+  }
+}
+
+/* 确保body和html为全屏 */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #131313; /* 确保背景一致 */
+}
+
+/* 隐藏滚动条 */
+.homepage::-webkit-scrollbar {
+  display: none;
+}
+
+.homepage {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .redesign-logo {
+    top: 28px;
+    right: 28px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .redesign-logo {
+    top: 24px;
+    right: 24px;
+    height: 20px;
+  }
+  
+  .sphere-placeholder {
+    width: 300px;
+    height: 300px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .redesign-logo {
+    top: 20px;
+    right: 20px;
+    height: 18px;
+  }
+  
+  .sphere-placeholder {
+    width: 250px;
+    height: 250px;
+    font-size: 18px;
+  }
+}
+
+/* 性能优化：GPU加速 */
+.sphere-container,
+.redesign-logo {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* 高DPI屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .redesign-logo img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+} 

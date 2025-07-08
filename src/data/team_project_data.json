@@ -1,0 +1,147 @@
+[
+  {
+    "id": 1,
+    "title": "2025招聘视频",
+    "author": "阿童",
+    "categories": [
+      "Motion",
+      "Graphic"
+    ],
+    "description": "",
+    "works": [
+      {
+        "id": 1,
+        "image": "/team_project/atong-1/recruitment-video-3rd.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/team_project/atong-1/3.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/team_project/atong-1/4.mp4"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "给明天的一句话",
+    "author": "阿蔚",
+    "categories": [
+      "Motion",
+      "Generative Art"
+    ],
+    "description": "",
+    "works": [
+      {
+        "id": 1,
+        "image": "/team_project/awei-2/03-audio.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/team_project/awei-2/b.jpg"
+      },
+      {
+        "id": 3,
+        "image": "/team_project/awei-2/c.jpg"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "小红书兴趣街区KV",
+    "author": "草菇、勘太、金田、竹子、泳圈、琵琶、果酱、鲸井、董业驰、徐萱倬",
+    "categories": [
+      "Graphic",
+      "AIGC"
+    ],
+    "description": "",
+    "works": [
+      {
+        "id": 1,
+        "image": "/team_project/caogu-kantai-zhuzi-yongquan-3/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/team_project/caogu-kantai-zhuzi-yongquan-3/2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/team_project/caogu-kantai-zhuzi-yongquan-3/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "威尼斯建筑双年展",
+    "author": "徹子",
+    "categories": [
+      "Motion",
+      "Generative Art"
+    ],
+    "description": "",
+    "works": [
+      {
+        "id": 1,
+        "image": "/team_project/chezi-4/1.gif"
+      },
+      {
+        "id": 2,
+        "image": "/team_project/chezi-4/2.webp"
+      },
+      {
+        "id": 3,
+        "image": "/team_project/chezi-4/3.mp4"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "只要国足在战，我们就站国足",
+    "author": "良多",
+    "categories": [
+      "Motion",
+      "Typography",
+      "AIGC"
+    ],
+    "description": "",
+    "works": [
+      {
+        "id": 1,
+        "image": "/team_project/liangduo-5/1.mp4"
+      },
+      {
+        "id": 2,
+        "image": "/team_project/liangduo-5/2.png"
+      },
+      {
+        "id": 3,
+        "image": "/team_project/liangduo-5/3.png"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "5分钟“田野”人文创作大赛",
+    "author": "田中",
+    "categories": [
+      "Graphic",
+      "Typography"
+    ],
+    "description": "",
+    "works": [
+      {
+        "id": 1,
+        "image": "/team_project/tianzhong-6/1.gif"
+      },
+      {
+        "id": 2,
+        "image": "/team_project/tianzhong-6/2.jpg"
+      },
+      {
+        "id": 3,
+        "image": "/team_project/tianzhong-6/3.jpeg"
+      }
+    ]
+  }
+]

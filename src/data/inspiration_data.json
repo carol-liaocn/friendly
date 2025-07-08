@@ -1,0 +1,238 @@
+[
+  {
+    "id": "compotte-branding",
+    "title": "COMPOTTE BRANDING",
+    "author": "hiromasafukaji",
+    "tags": "Branding, Typography, Generative Art",
+    "cover": "/inspiration_assets/ComPotte Branding_assets/ComPotte Branding.mp4",
+    "description": "ComPotte是一个结合了数学思维力量控制电脑和精美展现的工艺的陶瓷品牌。\n\n以“计算陶器”的概念，我们使用编程技术和3D打印机，将数字表达的细致有序的美融入到我们的作品中。把数字密度塑造成真正的陶器的所有工作都是手工完成的。通过结合土和釉料等材料的吸引力，这是生产过程中的附带表达，我们正在追求一种结合数字和物理的新表达。",
+    "link": [
+      "https://www.instagram.com/p/DJ4AR8hSNYc/?img_index=1"
+    ],
+    "main_asset": "/inspiration_assets/ComPotte Branding_assets/cover.mp4",
+    "assets": "/inspiration_assets/ComPotte Branding_assets/11.jpg; /inspiration_assets/ComPotte Branding_assets/12.jpg; /inspiration_assets/ComPotte Branding_assets/13.png; /inspiration_assets/ComPotte Branding_assets/14.jpg"
+  },
+  {
+    "id": "entropy-visual-identity",
+    "title": "Entropy Visual Identity",
+    "author": "studiodumbar",
+    "tags": "Generative Art, Typography",
+    "cover": "/inspiration_assets/entropy-visual-identity_assets/Entropy visual identity.mp4",
+    "description": "品牌识别设计。创建了一个自定义代码，可以生成不断扩展、自由移动的视觉元素。不同的代码用于生成独特的徽标（静态和动态）和背景元素，同时可以导入图像以创建无限多样的独特视觉效果。",
+    "link": [
+      "https://studiodumbar.com/work/entropy"
+    ],
+    "main_asset": "/inspiration_assets/entropy-visual-identity_assets/cover.mp4",
+    "assets": "/inspiration_assets/entropy-visual-identity_assets/11.jpeg; /inspiration_assets/entropy-visual-identity_assets/12.mp4"
+  },
+  {
+    "id": "alias-shape-system-development",
+    "title": "alias Shape System Development ",
+    "author": "0.00 Design（台湾）",
+    "tags": "Branding, Graphic, Generative Art",
+    "cover": "/inspiration_assets/alias-shape-system-development_assets/alias.gif",
+    "description": "alias是GOAT & Fight Club专属球鞋交易系统。在有限的时间内，产生出能与他们后台销售系统一起合作的形状系统。这两组系统透过程式码可以产生具有功能性但又不失实验性的图表，为此设计了2-3套，符合alias平台概念的基础元素，以及造图规则。",
+    "link": [
+      "https://odotoo.com/alias-Shape-System-Development"
+    ],
+    "main_asset": "/inspiration_assets/alias-shape-system-development_assets/10-1.png; /inspiration_assets/alias-shape-system-development_assets/10-2.png",
+    "assets": "/inspiration_assets/alias-shape-system-development_assets/6-1.gif; /inspiration_assets/alias-shape-system-development_assets/6-2.gif"
+  },
+  {
+    "id": "gray-matter-branding-design",
+    "title": "Gray Matter Branding Design",
+    "author": "eight.seconds",
+    "tags": "Branding, Graphic, Generative Art",
+    "cover": "/inspiration_assets/gray-matter-branding-design_assets/Gray Matter Branding.mp4",
+    "description": "这是为神经科学公司Gray Matter打造的完整的品牌标识。该公司通过先进的脑信号分析技术，在症状出现前检测脑健康变化，从而实现更早、更精准的干预，引领预测性神经护理领域。\n图形设计灵感源自大脑结构、数学映射及灰质的自然流动。通过柔和线条、抽象形态与数值元素构建，这些图形可应用于3D视觉效果及简化版用户界面设计。\n所有图形均通过节点程序化生成，赋予系统灵活性、深度与一致性。",
+    "link": [
+      "https://www.instagram.com/p/DLM_xgztAo-/?img_index=1"
+    ],
+    "main_asset": "/inspiration_assets/gray-matter-branding-design_assets/eight.seconds.mp4",
+    "assets": "/inspiration_assets/gray-matter-branding-design_assets/1.mp4; /inspiration_assets/gray-matter-branding-design_assets/2.mp4; /inspiration_assets/gray-matter-branding-design_assets/3.jpg; /inspiration_assets/gray-matter-branding-design_assets/4.jpg"
+  },
+  {
+    "id": "hiii-illustration-digital-stones",
+    "title": "Hiii Illustration 第十二届主视觉：数字石头",
+    "author": "鲁迅美术学院中英数字媒体（数字媒体）艺术学院设计团队",
+    "tags": "Graphic, Digital, AIGC",
+    "cover": "/inspiration_assets/hiii-illustration-digital-stones_assets/cover.png",
+    "description": "设计团队通过智能生成的“图文”模型，利用中、英文提示词（prompt）比对，创造出了上千块“数字石头”。生成式人工智能的提示词逻辑图展示了石头的生成过程：从设计概念的提出，到石头纹路的编码、解码、分类，最终找到适配的主题字母的虚拟数字化石头图像。",
+    "link": [
+      "https://www.theicod.org/en/activities/member-events/hiii-illustration-2024"
+    ],
+    "main_asset": "/inspiration_assets/hiii-illustration-digital-stones_assets/head.jpg",
+    "assets": "/inspiration_assets/hiii-illustration-digital-stones_assets/1.png; /inspiration_assets/hiii-illustration-digital-stones_assets/2.png"
+  },
+  {
+    "id": "mage-degree-show",
+    "title": "MAGE Degree Show",
+    "author": "Xinyun Huang",
+    "tags": "Branding, Motion, Generative Art",
+    "cover": "/inspiration_assets/mage-degree-show_assets/cover.webp",
+    "description": "用TD复现指纹在陶土上的形态，以此映射毕展主题“痕迹——印记”。",
+    "link": [
+      "https://www.behance.net/gallery/201394367/MAGE-Degree-Show-"
+    ],
+    "main_asset": "/inspiration_assets/mage-degree-show_assets/1.gif",
+    "assets": "/inspiration_assets/mage-degree-show_assets/2.webp; /inspiration_assets/mage-degree-show_assets/3.webp"
+  },
+  {
+    "id": "openai-devday",
+    "title": "OpenAI Devday",
+    "author": "studiodumbar",
+    "tags": "Branding, Motion, Generative Art",
+    "cover": "/inspiration_assets/openai-devday_assets/cover.mp4",
+    "description": "OpenAI 的整体品牌策略为将富有创意的应用创意融入多个触点创造了机会。通过设计、动效和创意编码项目来实现。在体验式激活中，我们整合了数字资产，为他们的春季更新、TownHall 和 DevDay 活动打造了极具吸引力的呈现。我们将有机动效设计应用于他们所有的品牌表达，以激励和指导品牌不断增长的用户群。在产品方面，我们为 ChatGPT 的高级语音模式功能精心设计了着色器开发和设计。",
+    "link": [
+      "https://studiodumbar.com/work/openai"
+    ],
+    "main_asset": "/inspiration_assets/openai-devday_assets/1.mp4",
+    "assets": "/inspiration_assets/openai-devday_assets/2.mp4; /inspiration_assets/openai-devday_assets/3.mp4 "
+  },
+  {
+    "id": "ibm-brand-system",
+    "title": "IBM 品牌生态 Quantum Brand Visuals",
+    "author": "FIELD.IO",
+    "tags": "Branding, Graphic, Generative Art",
+    "cover": "/inspiration_assets/ibm-brand-system_assets/cover.webm",
+    "description": "为 IBM Quantum 开发的一套视觉品牌系统，涵盖数字、产品和活动。一套生成品牌工具、量子仪表板和视觉效果，旨在打造量子世界的产品。",
+    "link": [
+      "https://field.io/work/ibm-quantum",
+      "https://field.io/work/ibm-quantum-brand-visuals"
+    ],
+    "main_asset": "/inspiration_assets/ibm-brand-system_assets/head.webm",
+    "assets": "/inspiration_assets/ibm-brand-system_assets/1.avif; /inspiration_assets/ibm-brand-system_assets/2.webm; /inspiration_assets/ibm-brand-system_assets/3.webm; /inspiration_assets/ibm-brand-system_assets/4.webm"
+  },
+  {
+    "id": "kitokito-toyama",
+    "title": "KITOKITO-TOYAMA",
+    "author": "0.00 Design（台湾）",
+    "tags": "Branding, Graphic",
+    "cover": "/inspiration_assets/kitokito-toyama_assets/cover.jpg",
+    "description": "由富山县综合设计中心所主导，将富山县自古相互分送福气、幸福的风俗习惯 “おすそわけ（osusowake）” 实体化并制成代表富山的工艺礼品。关注当地深厚的「工艺技术」，以小巧的日道具形式呈现，转换了沉甸甸的工艺印象，以轻巧的姿态大步走入现代人的日常！",
+    "link": [
+      "https://odotoo.com/KITOKITO-TOYAMA"
+    ],
+    "main_asset": "/inspiration_assets/kitokito-toyama_assets/1.png",
+    "assets": "/inspiration_assets/kitokito-toyama_assets/2.png; /inspiration_assets/kitokito-toyama_assets/3.png; /inspiration_assets/kitokito-toyama_assets/4.jpg; /inspiration_assets/kitokito-toyama_assets/5.jpg"
+  },
+  {
+    "id": "meet-me-in-the-metaverse",
+    "title": "Meet Me in the Metaverse identity designed",
+    "author": "agof.design",
+    "tags": "Branding, Graphic, Generative Art",
+    "cover": "/inspiration_assets/meet-me-in-the-metaverse_assets/cover.mp4",
+    "description": "用编码语言呈现几何图案网格的连续运动。像素元素、模块化概念以及交汇点通过运动行为得以强调。",
+    "link": [
+      "https://www.a-g-o-f.com/meet-me-in-the-metaverse"
+    ],
+    "main_asset": "/inspiration_assets/meet-me-in-the-metaverse_assets/head.jpg",
+    "assets": "/inspiration_assets/meet-me-in-the-metaverse_assets/1.mp4; /inspiration_assets/meet-me-in-the-metaverse_assets/2.mp4; /inspiration_assets/meet-me-in-the-metaverse_assets/3.mp4; /inspiration_assets/meet-me-in-the-metaverse_assets/4.mp4"
+  },
+  {
+    "id": "tonboutique-records",
+    "title": "Tonboutique Records - Album Cover Generator",
+    "author": "Tim Rodenbröker",
+    "tags": "Branding, Graphic, Generative Art",
+    "cover": "/inspiration_assets/tonboutique-records_assets/cover.png",
+    "description": "为Tonboutique Records定制的设计软件。这款基于 Web 的应用程序使唱片公司无需离开其企业设计系统即可创建无限数量的唱片封面。",
+    "link": [
+      "https://timrodenbroeker.de/tonboutique-designer/"
+    ],
+    "main_asset": "/inspiration_assets/tonboutique-records_assets/head.mp4",
+    "assets": "/inspiration_assets/tonboutique-records_assets/1.png; /inspiration_assets/tonboutique-records_assets/2.png; /inspiration_assets/tonboutique-records_assets/3.jpg; /inspiration_assets/tonboutique-records_assets/4.jpg"
+  },
+  {
+    "id": "kcai-biennial",
+    "title": "KCAI Biennial: Beautiful World(s)",
+    "author": "eagerzliterally",
+    "tags": "Graphic, Digital",
+    "cover": "/inspiration_assets/kcai-biennial_assets/cover.mp4",
+    "description": "《美丽世界》展览视觉识别系统",
+    "link": [
+      "https://www.instagram.com/p/CWgxoOCvb9b/?img_index=1",
+      "https://www.instagram.com/p/CW8i-I0lRZq/?img_index=1"
+    ],
+    "main_asset": "/inspiration_assets/kcai-biennial_assets/head.jpg",
+    "assets": "/inspiration_assets/kcai-biennial_assets/1.mp4; /inspiration_assets/kcai-biennial_assets/2.mp4"
+  },
+  {
+    "id": "adesigntour",
+    "title": "ADesignTour主视觉",
+    "author": "r杰 & 脑瓜atama",
+    "tags": "Motion, Graphic, Generative Art",
+    "cover": "/inspiration_assets/adesigntour_assets/cover.mp4",
+    "description": "一场深入日本设计的旅行｜ADesignTour。Processing生成随机颜色以及粗细变化的几何图形。",
+    "link": [
+      "https://www.xiaohongshu.com/explore/674bd30f000000000201a570"
+    ],
+    "main_asset": "/inspiration_assets/adesigntour_assets/head.mp4",
+    "assets": "/inspiration_assets/adesigntour_assets/3.jpg; /inspiration_assets/adesigntour_assets/4.jpg"
+  },
+  {
+    "id": "barcelona",
+    "title": "巴塞罗那设计学院编程课主视觉",
+    "author": "Tim Rodenbröker",
+    "tags": "Motion, Graphic, Generative Art",
+    "cover": "/inspiration_assets/barcelona_assets/cover.mp4",
+    "description": "巴塞罗那设计学院硕士生选修课“编程海报——图形设计领域的创意编程”中，学生们以一种非传统的方式将海报视为媒介，即通过编程而非依赖传统工具来创作。",
+    "link": [
+      "https://www.instagram.com/p/CydSMoXKyia/?img_index=2"
+    ],
+    "main_asset": "/inspiration_assets/barcelona_assets/head.mp4",
+    "assets": "/inspiration_assets/barcelona_assets/2.png; /inspiration_assets/barcelona_assets/3.png"
+  },
+  {
+    "id": "diego-petroso",
+    "title": "Diego Petroso概念店的新网站",
+    "author": "Luca Zoccola",
+    "tags": "Motion, Typography, Generative Art",
+    "cover": "/inspiration_assets/diego-petroso_assets/cover.png",
+    "description": "一个实验布局探讨了“积极网页设计”的不同可能性，不断演变的印刷不符合传统方式的屏幕，但根据屏幕的外观伸展，不断创造不同的形状和交叉点",
+    "link": [
+      "https://www.instagram.com/p/DA0T8Foi3yr/?utm_source=ig_web_copy_link&igsh=M2dteXlkZGJhY2My"
+    ],
+    "main_asset": "/inspiration_assets/diego-petroso_assets/head.mp4",
+    "assets": "/inspiration_assets/diego-petroso_assets/2.jpg; /inspiration_assets/diego-petroso_assets/3.jpg"
+  },
+  {
+    "id": "phase",
+    "title": "Phase生成式字体工具",
+    "author": "Elias Hanzer",
+    "tags": "Typography, Generative Art, AIGC",
+    "cover": "/inspiration_assets/phase_assets/cover.png",
+    "description": "允许用户使用模块化组件创建自己的 Phase 变体。该工具允许添加音频文件，这些音频文件将根据用户的滑动条输入与字体同步处理。",
+    "link": [
+      "https://www.eliashanzer.com/phase/"
+    ],
+    "main_asset": "/inspiration_assets/phase_assets/head.png",
+    "assets": "/inspiration_assets/phase_assets/2.png; /inspiration_assets/phase_assets/3.png"
+  },
+  {
+    "id": "f1",
+    "title": "F1一级方程式赛车品牌重塑",
+    "author": "Wieden+Kennedy ",
+    "tags": "Branding, Graphic, Generative Art",
+    "cover": "/inspiration_assets/f1_assets/cover.gif",
+    "description": "使用 TouchDesigner 创造实时视觉数据可视化、动态赛道与速度感模拟，增强赛事现场沉浸感，并在此基础上用ai设计流程工具",
+    "link": [
+      "https://www.itsnicethat.com/news/wieden-and-kennedy-formula-1-custom-software-digital-151220"
+    ],
+    "main_asset": "/inspiration_assets/f1_assets/head.gif",
+    "assets": "/inspiration_assets/f1_assets/1.gif; /inspiration_assets/f1_assets/2.png"
+  },
+  {
+    "id": "roland-garros",
+    "title": "2024年法网公开赛互动体育装置",
+    "author": "Steven Mark Kübler",
+    "tags": "Generative Art, AIGC",
+    "cover": "/inspiration_assets/roland-garros_assets/cover.mp4",
+    "description": "该装置位于里巴黎沃利街74号，店铺：Oysho ",
+    "link": [
+      "https://www.instagram.com/p/C6BsKRUCzTX/"
+    ],
+    "main_asset": "/inspiration_assets/roland-garros_assets/head.mp4",
+    "assets": "/inspiration_assets/roland-garros_assets/1.png; /inspiration_assets/roland-garros_assets/2.png"
+  }
+]
