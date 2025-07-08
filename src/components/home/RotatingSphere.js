@@ -1614,7 +1614,23 @@ const RotatingSphere = () => {
       if (videoPool) {
         for (const [, videoData] of videoPool) {
           if (videoData.video) {
-            cleanupVideo(videoData.video);
+            try {
+              // 清理单个视频 - 内联清理逻辑避免依赖外部函数
+              const video = videoData.video;
+              const events = ['loadedmetadata', 'loadeddata', 'canplaythrough', 'error', 'loadstart', 'canplay'];
+              events.forEach(event => {
+                video.removeEventListener(event, () => {}, true);
+              });
+              video.pause();
+              video.currentTime = 0;
+              video.src = '';
+              video.load();
+              if (video.parentNode) {
+                video.parentNode.removeChild(video);
+              }
+            } catch (error) {
+              console.warn('清理视频时出错:', error);
+            }
           }
           if (videoData.texture) {
             videoData.texture.dispose();
@@ -1645,7 +1661,7 @@ const RotatingSphere = () => {
       });
       cubesDataRef.current = [];
     };
-  }, [animate, handleClick, handleMouseDown, handleMouseMove, handleMouseUp, handleResize, initThreeJS, loadAndApplyTexture, createFallbackSphere, initializeVideos, buildVideoUrl, preloadVideos, cleanupVideo]);
+  }, [animate, handleClick, handleMouseDown, handleMouseMove, handleMouseUp, handleResize, initThreeJS, loadAndApplyTexture, createFallbackSphere, initializeVideos, buildVideoUrl, preloadVideos]);
 
   // 当媒体文件加载完成且Three.js初始化完成时，确保贴图正确加载
   useEffect(() => {
