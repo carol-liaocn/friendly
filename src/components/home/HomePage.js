@@ -78,7 +78,7 @@ const HomePage = ({ activeTab, setActiveTab }) => {
       )}
 
       {/* 滚动提示 - 仅在非loading状态显示 */}
-      {!isLoading && (
+      {/* {!isLoading && (
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20 opacity-60 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
           <div className="flex flex-col items-center text-light-gray">
             <span className="text-sm mb-2">向下滚动探索更多 | 点击球体切换视频</span>
@@ -89,7 +89,7 @@ const HomePage = ({ activeTab, setActiveTab }) => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* 左侧导航栏 - 与标准Sidebar完全一致 */}
       <div className={`fixed left-0 top-0 h-full w-80 z-10 transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>

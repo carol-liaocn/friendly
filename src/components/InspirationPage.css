@@ -3,7 +3,7 @@
 .inspiration-item-enter {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 0.5s cubic-bezier(0.42, 0, 1, 1);
+  transition: all 0.3s cubic-bezier(0, 0, 1, 200);
 }
 
 .inspiration-item-enter-active {
@@ -11,55 +11,41 @@
   transform: translateY(0);
 }
 
-/* 三列不同的延迟时间 - 加快速度 */
-.column-1 {
-  transition-delay: 0ms;
-}
+/* 每一行从左到右的渐次动画效果 */
 
-.column-2 {
-  transition-delay: 50ms;
-}
+/* 第1行 (项目1-3) */
+.inspiration-item-enter:nth-child(1) { transition-delay: 0ms; }      /* 第1行左列 */
+.inspiration-item-enter:nth-child(2) { transition-delay: 80ms; }     /* 第1行中列 */
+.inspiration-item-enter:nth-child(3) { transition-delay: 160ms; }    /* 第1行右列 */
 
-.column-3 {
-  transition-delay: 100ms;
-}
+/* 第2行 (项目4-6) */
+.inspiration-item-enter:nth-child(4) { transition-delay: 300ms; }    /* 第2行左列 */
+.inspiration-item-enter:nth-child(5) { transition-delay: 380ms; }    /* 第2行中列 */
+.inspiration-item-enter:nth-child(6) { transition-delay: 460ms; }    /* 第2行右列 */
 
-/* 为每一行的项目添加额外的延迟，创造更流畅的波浪效果 - 减少延迟 */
-.inspiration-item-enter:nth-child(4) { 
-  transition-delay: 240ms; 
-}
+/* 第3行 (项目7-9) */
+.inspiration-item-enter:nth-child(7) { transition-delay: 600ms; }    /* 第3行左列 */
+.inspiration-item-enter:nth-child(8) { transition-delay: 680ms; }    /* 第3行中列 */
+.inspiration-item-enter:nth-child(9) { transition-delay: 760ms; }    /* 第3行右列 */
 
-.inspiration-item-enter:nth-child(5) { 
-  transition-delay: 320ms; 
-}
+/* 第4行 (项目10-12) */
+.inspiration-item-enter:nth-child(10) { transition-delay: 900ms; }   /* 第4行左列 */
+.inspiration-item-enter:nth-child(11) { transition-delay: 980ms; }   /* 第4行中列 */
+.inspiration-item-enter:nth-child(12) { transition-delay: 1060ms; }  /* 第4行右列 */
 
-.inspiration-item-enter:nth-child(6) { 
-  transition-delay: 400ms; 
-}
+/* 第5行及以后 - 通用规则 */
+.inspiration-item-enter:nth-child(13) { transition-delay: 1200ms; }
+.inspiration-item-enter:nth-child(14) { transition-delay: 1280ms; }
+.inspiration-item-enter:nth-child(15) { transition-delay: 1360ms; }
 
-.inspiration-item-enter:nth-child(7) { 
-  transition-delay: 480ms; 
-}
+.inspiration-item-enter:nth-child(16) { transition-delay: 1500ms; }
+.inspiration-item-enter:nth-child(17) { transition-delay: 1580ms; }
+.inspiration-item-enter:nth-child(18) { transition-delay: 1660ms; }
 
-.inspiration-item-enter:nth-child(8) { 
-  transition-delay: 560ms; 
-}
-
-.inspiration-item-enter:nth-child(9) { 
-  transition-delay: 640ms; 
-}
-
-.inspiration-item-enter:nth-child(10) { 
-  transition-delay: 720ms; 
-}
-
-.inspiration-item-enter:nth-child(11) { 
-  transition-delay: 800ms; 
-}
-
-.inspiration-item-enter:nth-child(12) { 
-  transition-delay: 880ms; 
-}
+/* 三列基础样式保持 */
+.column-1 { /* 左列 - 保持原有样式但延迟由nth-child控制 */ }
+.column-2 { /* 中列 - 保持原有样式但延迟由nth-child控制 */ }
+.column-3 { /* 右列 - 保持原有样式但延迟由nth-child控制 */ }
 
 /* 增强视觉效果 */
 .inspiration-item-enter-active {
