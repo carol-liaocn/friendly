@@ -5,6 +5,7 @@ import './HomePage.css';
 
 const HomePage = ({ activeTab, setActiveTab }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   // 减少首页加载时间，提升用户体验
   useEffect(() => {
@@ -14,6 +15,49 @@ const HomePage = ({ activeTab, setActiveTab }) => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // 滚轮事件监听
+  useEffect(() => {
+    let scrollTimeout;
+
+    const handleWheel = (e) => {
+      // 防止滚动过于频繁触发
+      if (isScrolling) return;
+
+      // 只在向下滚动时触发
+      if (e.deltaY > 0) {
+        console.log('🎢 检测到向下滚动，切换到inspiration页面');
+        setIsScrolling(true);
+        
+        // 添加过渡效果
+        document.body.style.transition = 'opacity 0.5s ease-in-out';
+        
+        // 延迟切换页面，让用户感受到过渡
+        setTimeout(() => {
+          setActiveTab('inspiration');
+        }, 200);
+
+        // 防止短时间内重复触发
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          setIsScrolling(false);
+        }, 1000);
+      }
+    };
+
+    // 确保页面已加载完成再添加事件监听
+    if (!isLoading) {
+      window.addEventListener('wheel', handleWheel, { passive: false });
+      console.log('🎯 滚轮事件监听器已激活');
+    }
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      clearTimeout(scrollTimeout);
+      console.log('🧹 滚轮事件监听器已清理');
+    };
+  }, [isLoading, isScrolling, setActiveTab]);
+
   const navItems = [
     { id: 'inspiration', label: 'inspiration' },
     { id: 'artist', label: 'artist' },
@@ -28,6 +72,20 @@ const HomePage = ({ activeTab, setActiveTab }) => {
           fullScreen={true}
           size="xl"
         />
+      )}
+
+      {/* 滚动提示 - 仅在非loading状态显示 */}
+      {!isLoading && (
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20 opacity-60 hover:opacity-100 transition-opacity duration-300">
+          <div className="flex flex-col items-center text-light-gray">
+            <span className="text-sm mb-2">向下滚动探索更多</span>
+            <div className="animate-bounce">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* 左侧导航栏 - 与标准Sidebar完全一致 */}

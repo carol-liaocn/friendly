@@ -1,13 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import ProjectModal from './ProjectModal';
 import LazyMedia from './LazyMedia';
 import LoadingSpinner from './LoadingSpinner';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import inspirationData from '../data/inspiration_data.json';
+import './InspirationPage.css';
 
 const InspirationPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All');
+  const [animationStage, setAnimationStage] = useState(0); // 0: 未开始, 1: 第一列, 2: 第二列, 3: 第三列
 
   // 处理标签字符串，转换为数组
   const processedProjects = useMemo(() => 
@@ -35,9 +37,49 @@ const InspirationPage = () => {
   } = useInfiniteScroll(filteredProjects, 6); // 每次加载6个项目，优化首屏性能
 
   // 当筛选条件改变时重置
-  React.useEffect(() => {
+  useEffect(() => {
     reset();
   }, [activeFilter, reset]);
+
+  // 三列依次动画效果
+  useEffect(() => {
+    // 页面加载时启动动画序列
+    const animationSequence = async () => {
+      // 延迟100ms开始，确保页面已渲染
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      console.log('🎬 启动inspiration页面三列动画序列');
+      
+      // 第一列动画 (最快)
+      setAnimationStage(1);
+      console.log('📍 第一列动画开始');
+      
+      // 300ms后第二列动画
+      await new Promise(resolve => setTimeout(resolve, 300));
+      setAnimationStage(2);
+      console.log('📍 第二列动画开始');
+      
+      // 再300ms后第三列动画 (最慢)
+      await new Promise(resolve => setTimeout(resolve, 300));
+      setAnimationStage(3);
+      console.log('📍 第三列动画开始');
+    };
+
+    animationSequence();
+  }, []);
+
+  // 当筛选条件改变时，重新触发动画
+  useEffect(() => {
+    if (activeFilter !== 'All') {
+      setAnimationStage(0);
+      const timer = setTimeout(() => {
+        setAnimationStage(1);
+        setTimeout(() => setAnimationStage(2), 200);
+        setTimeout(() => setAnimationStage(3), 400);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [activeFilter]);
 
   const filterOptions = ['All', 'Branding', 'Digital', 'Motion', 'Graphic', 'Typography', 'Generative Art', 'AIGC'];
 
@@ -57,6 +99,19 @@ const InspirationPage = () => {
   // 不需要手动编码URL，浏览器会自动处理
   const getEncodedPath = (path) => {
     return path;
+  };
+
+  // 获取项目所在的列（0: 第一列, 1: 第二列, 2: 第三列）
+  const getColumnIndex = (index) => index % 3;
+
+  // 获取动画类名
+  const getAnimationClass = (index) => {
+    const columnIndex = getColumnIndex(index);
+    const shouldAnimate = animationStage > columnIndex;
+    
+    return shouldAnimate 
+      ? `inspiration-item-enter inspiration-item-enter-active column-${columnIndex + 1}` 
+      : `inspiration-item-enter column-${columnIndex + 1}`;
   };
 
   // inspiration页面专注于快速加载cover，不需要复杂的预览图逻辑
@@ -92,7 +147,7 @@ const InspirationPage = () => {
                 <div
                   key={project.id}
                   ref={index === displayedProjects.length - 1 ? lastItemRef : null}
-                  className="cursor-pointer group"
+                  className={`cursor-pointer group ${getAnimationClass(index)}`}
                   onClick={() => setSelectedProject(project)}
                 >
                   <div className="aspect-[4/5] bg-design-gray rounded-xl overflow-hidden mb-6 group-hover:opacity-80 transition-opacity">
