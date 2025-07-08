@@ -1,9 +1,9 @@
 [
-  "homepage-videos/4.mp4",
-  "homepage-videos/1.mp4",
-  "homepage-videos/2.mp4", 
-  "homepage-videos/3.mp4",
-  "homepage-videos/5.mp4",
-  "homepage-videos/6.mp4",
-  "homepage-videos/7.mp4"
+  "https://hfgwwcsmqthcypxifmso.storage.supabase.co/v1/object/public/assets/homepage-videos/1.mp4",
+  "https://hfgwwcsmqthcypxifmso.storage.supabase.co/v1/object/public/assets/homepage-videos/2.mp4",
+  "https://hfgwwcsmqthcypxifmso.storage.supabase.co/v1/object/public/assets/homepage-videos/3.mp4",
+  "https://hfgwwcsmqthcypxifmso.storage.supabase.co/v1/object/public/assets/homepage-videos/4.mp4",
+  "https://hfgwwcsmqthcypxifmso.storage.supabase.co/v1/object/public/assets/homepage-videos/5.mp4",
+  "https://hfgwwcsmqthcypxifmso.storage.supabase.co/v1/object/public/assets/homepage-videos/6.mp4",
+  "https://hfgwwcsmqthcypxifmso.storage.supabase.co/v1/object/public/assets/homepage-videos/7.mp4"
 ]

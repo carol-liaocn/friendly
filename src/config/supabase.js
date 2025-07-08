@@ -2,7 +2,7 @@
 export const SUPABASE_CONFIG = {
   // Your Supabase project details
   url: 'https://hfgwwcsmqthcypxifmso.supabase.co',
-  storageUrl: 'https://hfgwwcsmqthcypxifmso.supabase.co/storage/v1/object/public/assets',
+  storageUrl: 'https://hfgwwcsmqthcypxifmso.storage.supabase.co/v1/object/public/assets',
   bucketName: 'assets'
 };
 
