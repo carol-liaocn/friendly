@@ -1528,8 +1528,9 @@ const RotatingSphere = () => {
     console.log('🚀 RotatingSphere 组件初始化...');
     console.log(`📹 发现 ${mediaList.length} 个视频文件`);
     
-
-    
+    // 在useEffect开始就保存ref值，避免在cleanup函数中直接引用ref
+    const savedVideoPool = videoPoolRef.current;
+    const savedCubesData = cubesDataRef.current;
 
     
     // 初始化Three.js
@@ -1609,10 +1610,9 @@ const RotatingSphere = () => {
       
       // 清理视频预加载池
       console.log('🧹 清理视频预加载池...');
-      // 在useEffect内部就复制ref值到局部变量，避免ESLint警告
-      const videoPool = videoPoolRef.current;
-      if (videoPool) {
-        for (const [, videoData] of videoPool) {
+      // 使用useEffect开始时保存的ref值，避免ESLint警告
+      if (savedVideoPool) {
+        for (const [, videoData] of savedVideoPool) {
           if (videoData.video) {
             try {
               // 清理单个视频 - 内联清理逻辑避免依赖外部函数
@@ -1636,7 +1636,7 @@ const RotatingSphere = () => {
             videoData.texture.dispose();
           }
         }
-        videoPool.clear();
+        savedVideoPool.clear();
       }
       
       if (scene) {
@@ -1647,7 +1647,7 @@ const RotatingSphere = () => {
       }
       
       // 清理立方体相关资源
-      cubesDataRef.current.forEach((cubeData) => {
+      savedCubesData.forEach((cubeData) => {
         if (cubeData.mesh.geometry) {
           cubeData.mesh.geometry.dispose();
         }
@@ -1659,6 +1659,7 @@ const RotatingSphere = () => {
           }
         }
       });
+      // 注意：这里仍然需要清空当前的ref，因为组件可能还会继续使用
       cubesDataRef.current = [];
     };
   }, [animate, handleClick, handleMouseDown, handleMouseMove, handleMouseUp, handleResize, initThreeJS, loadAndApplyTexture, createFallbackSphere, initializeVideos, buildVideoUrl, preloadVideos]);
