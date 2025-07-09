@@ -42,47 +42,73 @@ const InspirationPage = () => {
   useEffect(() => {
     reset();
     setVisibleRows(new Set()); // 重置可见行
-  }, [activeFilter, reset]);
+    
+    // 如果选择了非"All"筛选，立即显示所有行
+    if (activeFilter !== 'All') {
+      // 延迟一帧确保DOM更新后再设置可见行
+      requestAnimationFrame(() => {
+        const totalRows = Math.ceil(filteredProjects.length / 3);
+        const allRows = new Set();
+        for (let i = 0; i < totalRows; i++) {
+          allRows.add(i);
+        }
+        setVisibleRows(allRows);
+        console.log(`🎯 非All筛选(${activeFilter})：立即显示所有 ${totalRows} 行`);
+      });
+    }
+  }, [activeFilter, reset, filteredProjects.length]);
 
-  // 设置Intersection Observer
+  // 设置Intersection Observer - 只在"All"筛选时启用
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const rowIndex = parseInt(entry.target.dataset.rowIndex, 10);
-            setVisibleRows(prev => {
-              const newVisible = new Set(prev);
-              newVisible.add(rowIndex);
-              console.log(`🎬 第${rowIndex + 1}行进入视图，开始动画`);
-              return newVisible;
-            });
-          }
-        });
-      },
-      {
-        threshold: 0.3, // 当30%的行可见时触发
-        rootMargin: '0px 0px -50px 0px' // 稍微提前触发
-      }
-    );
+    // 清理之前的observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
 
-    observerRef.current = observer;
+    // 只在"All"筛选时创建observer
+    if (activeFilter === 'All') {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const rowIndex = parseInt(entry.target.dataset.rowIndex, 10);
+              setVisibleRows(prev => {
+                const newVisible = new Set(prev);
+                newVisible.add(rowIndex);
+                console.log(`🎬 第${rowIndex + 1}行进入视图，开始动画`);
+                return newVisible;
+              });
+            }
+          });
+        },
+        {
+          threshold: 0.3, // 当30%的行可见时触发
+          rootMargin: '0px 0px -50px 0px' // 稍微提前触发
+        }
+      );
+
+      observerRef.current = observer;
+      console.log('🎯 All筛选：Intersection Observer已启用');
+    } else {
+      console.log('🎯 非All筛选：跳过Intersection Observer');
+    }
 
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
     };
-  }, []);
+  }, [activeFilter]);
 
-  // 观察行元素
+  // 观察行元素 - 只在"All"筛选时设置observer
   const setRowRef = useCallback((element, rowIndex) => {
-    if (element && observerRef.current) {
+    if (element && activeFilter === 'All' && observerRef.current) {
       element.dataset.rowIndex = rowIndex;
       observerRef.current.observe(element);
       rowRefs.current[rowIndex] = element;
     }
-  }, []);
+  }, [activeFilter]);
 
   const filterOptions = ['All', 'Branding', 'Digital', 'Motion', 'Graphic', 'Typography', 'Generative Art', 'AIGC'];
 
@@ -110,10 +136,17 @@ const InspirationPage = () => {
   // 获取项目在行内的位置（0, 1, 2）
   const getPositionInRow = (index) => index % 3;
 
-  // 获取动画类名
+  // 获取动画类名 - 根据筛选条件决定是否使用动画
   const getAnimationClass = (index) => {
-    const rowIndex = getRowIndex(index);
     const positionInRow = getPositionInRow(index);
+    
+    // 如果不是"All"筛选，直接显示（无动画）
+    if (activeFilter !== 'All') {
+      return `inspiration-item-enter inspiration-item-enter-active position-${positionInRow}`;
+    }
+    
+    // "All"筛选时使用原有的滚动触发动画逻辑
+    const rowIndex = getRowIndex(index);
     const isRowVisible = visibleRows.has(rowIndex);
     
     return isRowVisible 
