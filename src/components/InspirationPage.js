@@ -38,77 +38,89 @@ const InspirationPage = () => {
     reset
   } = useInfiniteScroll(filteredProjects, 12); // 增加到12个项目，这样有4行
 
-  // 当筛选条件改变时重置
+  // 当筛选条件改变时重置并启动第一排动画
   useEffect(() => {
     reset();
     setVisibleRows(new Set()); // 重置可见行
     
-    // 如果选择了非"All"筛选，立即显示所有行
-    if (activeFilter !== 'All') {
-      // 延迟一帧确保DOM更新后再设置可见行
-      requestAnimationFrame(() => {
-        const totalRows = Math.ceil(filteredProjects.length / 3);
-        const allRows = new Set();
-        for (let i = 0; i < totalRows; i++) {
-          allRows.add(i);
-        }
-        setVisibleRows(allRows);
-        console.log(`🎯 非All筛选(${activeFilter})：立即显示所有 ${totalRows} 行`);
-      });
-    }
-  }, [activeFilter, reset, filteredProjects.length]);
+    // 延迟一帧后启动第一排动画，模拟点击INSPIRATION按钮的效果
+    setTimeout(() => {
+      if (displayedProjects.length > 0) {
+        setVisibleRows(prev => {
+          const newVisible = new Set(prev);
+          newVisible.add(0); // 立即显示第一排
+          console.log('🎬 筛选器点击 - 第一排立即开始动画');
+          return newVisible;
+        });
+      }
+    }, 100); // 100ms延迟，让重置生效后再启动动画
+  }, [activeFilter, reset]);
 
-  // 设置Intersection Observer - 只在"All"筛选时启用
+  // 当displayedProjects改变时，确保第一排动画触发
   useEffect(() => {
-    // 清理之前的observer
-    if (observerRef.current) {
-      observerRef.current.disconnect();
-      observerRef.current = null;
+    if (displayedProjects.length > 0) {
+      setTimeout(() => {
+        setVisibleRows(prev => {
+          if (!prev.has(0)) {
+            const newVisible = new Set(prev);
+            newVisible.add(0); // 确保第一排始终可见
+            console.log('🎬 内容加载完成 - 第一排开始动画');
+            return newVisible;
+          }
+          return prev;
+        });
+      }, 50);
     }
+  }, [displayedProjects.length]);
 
-    // 只在"All"筛选时创建observer
-    if (activeFilter === 'All') {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const rowIndex = parseInt(entry.target.dataset.rowIndex, 10);
+  // 设置Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const rowIndex = parseInt(entry.target.dataset.rowIndex, 10);
+            // 跳过第一排，因为第一排通过筛选器直接触发
+            if (rowIndex > 0) {
               setVisibleRows(prev => {
                 const newVisible = new Set(prev);
                 newVisible.add(rowIndex);
-                console.log(`🎬 第${rowIndex + 1}行进入视图，开始动画`);
+                console.log(`🎬 第${rowIndex + 1}行滚动进入视图，开始动画`);
                 return newVisible;
               });
             }
-          });
-        },
-        {
-          threshold: 0.3, // 当30%的行可见时触发
-          rootMargin: '0px 0px -50px 0px' // 稍微提前触发
-        }
-      );
+          }
+        });
+      },
+      {
+        threshold: 0.3, // 当30%的行可见时触发
+        rootMargin: '0px 0px -50px 0px' // 稍微提前触发
+      }
+    );
 
-      observerRef.current = observer;
-      console.log('🎯 All筛选：Intersection Observer已启用');
-    } else {
-      console.log('🎯 非All筛选：跳过Intersection Observer');
-    }
+    observerRef.current = observer;
 
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
     };
-  }, [activeFilter]);
+  }, []);
 
-  // 观察行元素 - 只在"All"筛选时设置observer
+  // 观察行元素
   const setRowRef = useCallback((element, rowIndex) => {
-    if (element && activeFilter === 'All' && observerRef.current) {
+    if (element && observerRef.current) {
       element.dataset.rowIndex = rowIndex;
       observerRef.current.observe(element);
       rowRefs.current[rowIndex] = element;
     }
-  }, [activeFilter]);
+  }, []);
+
+  // 筛选器点击处理函数
+  const handleFilterClick = (option) => {
+    console.log(`🎯 点击筛选器: ${option}`);
+    setActiveFilter(option);
+  };
 
   const filterOptions = ['All', 'Branding', 'Digital', 'Motion', 'Graphic', 'Typography', 'Generative Art', 'AIGC'];
 
@@ -136,17 +148,10 @@ const InspirationPage = () => {
   // 获取项目在行内的位置（0, 1, 2）
   const getPositionInRow = (index) => index % 3;
 
-  // 获取动画类名 - 根据筛选条件决定是否使用动画
+  // 获取动画类名
   const getAnimationClass = (index) => {
-    const positionInRow = getPositionInRow(index);
-    
-    // 如果不是"All"筛选，直接显示（无动画）
-    if (activeFilter !== 'All') {
-      return `inspiration-item-enter inspiration-item-enter-active position-${positionInRow}`;
-    }
-    
-    // "All"筛选时使用原有的滚动触发动画逻辑
     const rowIndex = getRowIndex(index);
+    const positionInRow = getPositionInRow(index);
     const isRowVisible = visibleRows.has(rowIndex);
     
     return isRowVisible 
@@ -172,7 +177,7 @@ const InspirationPage = () => {
           {filterOptions.map((option) => (
             <button
               key={option}
-              onClick={() => setActiveFilter(option)}
+              onClick={() => handleFilterClick(option)}
               className={`transition-colors duration-200 hover:opacity-80 ${
                 activeFilter === option 
                   ? 'text-[#E2E2E2]' 
@@ -191,7 +196,7 @@ const InspirationPage = () => {
           <>
             {projectRows.map((row, rowIndex) => (
               <div
-                key={`row-${rowIndex}`}
+                key={`row-${rowIndex}-${activeFilter}`}
                 ref={(el) => setRowRef(el, rowIndex)}
                 className="grid grid-cols-3 gap-6 mb-6"
               >

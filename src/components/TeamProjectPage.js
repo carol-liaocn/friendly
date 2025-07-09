@@ -147,13 +147,6 @@ const TeamProjectPage = () => {
           </p>
         </div>
       )}
-
-      {/* No projects found message */}
-      {displayedProjects.length === 0 && !isLoading && (
-        <div className="flex items-center justify-center h-64">
-          <p className="text-[#787878] text-lg">暂无团队项目</p>
-        </div>
-      )}
     </div>
   );
 };
