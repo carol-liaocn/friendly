@@ -71,6 +71,7 @@ const InspirationPage = () => {
         });
       }, 50);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayedProjects.length]);
 
   // 设置Intersection Observer
