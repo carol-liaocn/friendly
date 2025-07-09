@@ -54,6 +54,7 @@ const InspirationPage = () => {
         });
       }
     }, 100); // 100ms延迟，让重置生效后再启动动画
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeFilter, reset, filteredProjects.length]);
 
   // 当displayedProjects改变时，确保第一排动画触发
