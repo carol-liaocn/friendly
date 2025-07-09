@@ -38,23 +38,37 @@ const InspirationPage = () => {
     reset
   } = useInfiniteScroll(filteredProjects, 12); // 增加到12个项目，这样有4行
 
-  // 当筛选条件改变时重置并启动第一排动画
+  // 当筛选条件改变时重置
   useEffect(() => {
     reset();
     setVisibleRows(new Set()); // 重置可见行
     
-    // 延迟一帧后启动第一排动画，模拟点击INSPIRATION按钮的效果
-    setTimeout(() => {
-      if (displayedProjects.length > 0) {
-        setVisibleRows(prev => {
-          const newVisible = new Set(prev);
-          newVisible.add(0); // 立即显示第一排
-          console.log('🎬 筛选器点击 - 第一排立即开始动画');
-          return newVisible;
-        });
-      }
-    }, 100); // 100ms延迟，让重置生效后再启动动画
-  }, [activeFilter, reset]);
+    // 如果选择了非"All"筛选，立即显示所有行
+    if (activeFilter !== 'All') {
+      // 延迟一帧确保DOM更新后再设置可见行
+      requestAnimationFrame(() => {
+        const totalRows = Math.ceil(filteredProjects.length / 3);
+        const allRows = new Set();
+        for (let i = 0; i < totalRows; i++) {
+          allRows.add(i);
+        }
+        setVisibleRows(allRows);
+        console.log(`🎯 非All筛选(${activeFilter})：立即显示所有 ${totalRows} 行`);
+      });
+    } else {
+      // All筛选时，延迟启动第一排动画
+      setTimeout(() => {
+        if (displayedProjects.length > 0) {
+          setVisibleRows(prev => {
+            const newVisible = new Set(prev);
+            newVisible.add(0); // 立即显示第一排
+            console.log('🎬 筛选器点击 - 第一排立即开始动画');
+            return newVisible;
+          });
+        }
+      }, 100); // 100ms延迟，让重置生效后再启动动画
+    }
+  }, [activeFilter, reset, filteredProjects.length]);
 
   // 当displayedProjects改变时，确保第一排动画触发
   useEffect(() => {
@@ -73,48 +87,61 @@ const InspirationPage = () => {
     }
   }, [displayedProjects.length]);
 
-  // 设置Intersection Observer
+  // 设置Intersection Observer - 只在"All"筛选时启用
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const rowIndex = parseInt(entry.target.dataset.rowIndex, 10);
-            // 跳过第一排，因为第一排通过筛选器直接触发
-            if (rowIndex > 0) {
-              setVisibleRows(prev => {
-                const newVisible = new Set(prev);
-                newVisible.add(rowIndex);
-                console.log(`🎬 第${rowIndex + 1}行滚动进入视图，开始动画`);
-                return newVisible;
-              });
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.3, // 当30%的行可见时触发
-        rootMargin: '0px 0px -50px 0px' // 稍微提前触发
-      }
-    );
+    // 清理之前的observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
 
-    observerRef.current = observer;
+    // 只在"All"筛选时创建observer
+    if (activeFilter === 'All') {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const rowIndex = parseInt(entry.target.dataset.rowIndex, 10);
+              // 跳过第一排，因为第一排通过筛选器直接触发
+              if (rowIndex > 0) {
+                setVisibleRows(prev => {
+                  const newVisible = new Set(prev);
+                  newVisible.add(rowIndex);
+                  console.log(`🎬 第${rowIndex + 1}行滚动进入视图，开始动画`);
+                  return newVisible;
+                });
+              }
+            }
+          });
+        },
+        {
+          threshold: 0.3, // 当30%的行可见时触发
+          rootMargin: '0px 0px -50px 0px' // 稍微提前触发
+        }
+      );
+
+      observerRef.current = observer;
+    }
 
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
     };
-  }, []);
+  }, [activeFilter]);
 
-  // 观察行元素
+  // 观察行元素 - 只在"All"筛选时观察
   const setRowRef = useCallback((element, rowIndex) => {
-    if (element && observerRef.current) {
+    if (element) {
       element.dataset.rowIndex = rowIndex;
-      observerRef.current.observe(element);
       rowRefs.current[rowIndex] = element;
+      
+      // 只在"All"筛选且observer存在时观察元素
+      if (activeFilter === 'All' && observerRef.current) {
+        observerRef.current.observe(element);
+      }
     }
-  }, []);
+  }, [activeFilter]);
 
   // 筛选器点击处理函数
   const handleFilterClick = (option) => {
