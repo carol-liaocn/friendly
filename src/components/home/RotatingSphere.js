@@ -52,10 +52,10 @@ const RotatingSphere = () => {
 
   // 球体和立方体配置
   const SPHERE_CONFIG = useMemo(() => ({
-    radius: 1.2,
+    radius: 1.14, // 基础半径：原始1.2的95%
     cubesPerRing: 20, // 每个环的立方体数量（减少以提升性能）
     rings: 30, // 环的数量（从36减少到30，减少16.7%）
-    cubeSize: 0.24, // 立方体大小（从0.18增大到0.24，增大33%）
+    cubeSize: 0.228, // 立方体大小：原始0.24的95%
     flipRadius: 0.25, // 鼠标影响半径
     flipDuration: 250, // 翻转动画时长（进一步提升响应速度）
     trailDuration: 300, // 拖尾持续时间（毫秒）- 减少以提升性能
@@ -83,9 +83,9 @@ const RotatingSphere = () => {
     const titleBottomInWorld = (titleBottomPosition / viewportHeight) * worldHeight;
     const bottomMargin = (40 / viewportHeight) * worldHeight;
     const availableHeight = worldHeight - titleBottomInWorld - bottomMargin;
-    const radius = (availableHeight / 2) * 0.85;
+    const radius = (availableHeight / 2) * 0.8075; // 动态计算系数：原始0.85的95%
     
-    return Math.max(radius, 0.5);
+    return Math.max(radius, 0.475); // 最小半径：原始0.5的95%
   }, []);
 
   // 生成球面上的立方体位置和UV坐标

@@ -1,78 +1,31 @@
-/* InspirationPage动画样式 */
+/* InspirationPage - 基于滚动触发的逐行动画 */
 
 .inspiration-item-enter {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.3s cubic-bezier(0, 0, 1, 200);
+  transform: translateY(100px);
 }
 
 .inspiration-item-enter-active {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-/* 每一行从左到右的渐次动画效果 */
-
-/* 第1行 (项目1-3) */
-.inspiration-item-enter:nth-child(1) { transition-delay: 0ms; }      /* 第1行左列 */
-.inspiration-item-enter:nth-child(2) { transition-delay: 80ms; }     /* 第1行中列 */
-.inspiration-item-enter:nth-child(3) { transition-delay: 160ms; }    /* 第1行右列 */
-
-/* 第2行 (项目4-6) */
-.inspiration-item-enter:nth-child(4) { transition-delay: 300ms; }    /* 第2行左列 */
-.inspiration-item-enter:nth-child(5) { transition-delay: 380ms; }    /* 第2行中列 */
-.inspiration-item-enter:nth-child(6) { transition-delay: 460ms; }    /* 第2行右列 */
-
-/* 第3行 (项目7-9) */
-.inspiration-item-enter:nth-child(7) { transition-delay: 600ms; }    /* 第3行左列 */
-.inspiration-item-enter:nth-child(8) { transition-delay: 680ms; }    /* 第3行中列 */
-.inspiration-item-enter:nth-child(9) { transition-delay: 760ms; }    /* 第3行右列 */
-
-/* 第4行 (项目10-12) */
-.inspiration-item-enter:nth-child(10) { transition-delay: 900ms; }   /* 第4行左列 */
-.inspiration-item-enter:nth-child(11) { transition-delay: 980ms; }   /* 第4行中列 */
-.inspiration-item-enter:nth-child(12) { transition-delay: 1060ms; }  /* 第4行右列 */
-
-/* 第5行及以后 - 通用规则 */
-.inspiration-item-enter:nth-child(13) { transition-delay: 1200ms; }
-.inspiration-item-enter:nth-child(14) { transition-delay: 1280ms; }
-.inspiration-item-enter:nth-child(15) { transition-delay: 1360ms; }
-
-.inspiration-item-enter:nth-child(16) { transition-delay: 1500ms; }
-.inspiration-item-enter:nth-child(17) { transition-delay: 1580ms; }
-.inspiration-item-enter:nth-child(18) { transition-delay: 1660ms; }
-
-/* 三列基础样式保持 */
-.column-1 { /* 左列 - 保持原有样式但延迟由nth-child控制 */ }
-.column-2 { /* 中列 - 保持原有样式但延迟由nth-child控制 */ }
-.column-3 { /* 右列 - 保持原有样式但延迟由nth-child控制 */ }
-
-/* 增强视觉效果 */
-.inspiration-item-enter-active {
-  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+/* 行内位置延迟 - 左到右渐次出现 */
+.inspiration-item-enter-active.position-0 {
+  transition-delay: 0ms; /* 第一个位置，立即开始 */
 }
 
-/* 为不同列添加轻微的旋转效果 */
-.column-1.inspiration-item-enter {
-  transform: translateY(40px) rotate(-1deg);
+.inspiration-item-enter-active.position-1 {
+  transition-delay: 100ms; /* 第二个位置，延迟100ms */
 }
 
-.column-2.inspiration-item-enter {
-  transform: translateY(40px) rotate(0deg);
+.inspiration-item-enter-active.position-2 {
+  transition-delay: 200ms; /* 第三个位置，延迟200ms */
 }
 
-.column-3.inspiration-item-enter {
-  transform: translateY(40px) rotate(1deg);
-}
-
-.column-1.inspiration-item-enter-active,
-.column-2.inspiration-item-enter-active,
-.column-3.inspiration-item-enter-active {
-  transform: translateY(0) rotate(0deg);
-}
-
-/* 悬停效果增强 */
-.inspiration-item-enter-active:hover {
+/* 悬停效果 */
+/* .inspiration-item-enter-active:hover {
   transform: translateY(-4px) scale(1.02);
-  transition: all 0.1s ease;
-} 
+  transition: all 0.2s ease;
+}  */

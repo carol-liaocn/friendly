@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import ProjectModal from './ProjectModal';
 import LazyMedia from './LazyMedia';
 import LoadingSpinner from './LoadingSpinner';
@@ -9,7 +9,9 @@ import './InspirationPage.css';
 const InspirationPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All');
-  const [animationStage, setAnimationStage] = useState(0); // 0: 未开始, 1: 第一列, 2: 第二列, 3: 第三列
+  const [visibleRows, setVisibleRows] = useState(new Set()); // 记录已经可见的行
+  const observerRef = useRef(null);
+  const rowRefs = useRef({});
 
   // 处理标签字符串，转换为数组
   const processedProjects = useMemo(() => 
@@ -34,52 +36,53 @@ const InspirationPage = () => {
     hasMore,
     lastItemRef,
     reset
-  } = useInfiniteScroll(filteredProjects, 6); // 每次加载6个项目，优化首屏性能
+  } = useInfiniteScroll(filteredProjects, 12); // 增加到12个项目，这样有4行
 
   // 当筛选条件改变时重置
   useEffect(() => {
     reset();
+    setVisibleRows(new Set()); // 重置可见行
   }, [activeFilter, reset]);
 
-  // 三列依次动画效果
+  // 设置Intersection Observer
   useEffect(() => {
-    // 页面加载时启动动画序列
-    const animationSequence = async () => {
-      // 延迟100ms开始，确保页面已渲染
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
-      console.log('🎬 启动inspiration页面三列动画序列');
-      
-      // 第一列动画 (最快)
-      setAnimationStage(1);
-      console.log('📍 第一列动画开始');
-      
-      // 300ms后第二列动画
-      await new Promise(resolve => setTimeout(resolve, 300));
-      setAnimationStage(2);
-      console.log('📍 第二列动画开始');
-      
-      // 再300ms后第三列动画 (最慢)
-      await new Promise(resolve => setTimeout(resolve, 300));
-      setAnimationStage(3);
-      console.log('📍 第三列动画开始');
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const rowIndex = parseInt(entry.target.dataset.rowIndex, 10);
+            setVisibleRows(prev => {
+              const newVisible = new Set(prev);
+              newVisible.add(rowIndex);
+              console.log(`🎬 第${rowIndex + 1}行进入视图，开始动画`);
+              return newVisible;
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.3, // 当30%的行可见时触发
+        rootMargin: '0px 0px -50px 0px' // 稍微提前触发
+      }
+    );
 
-    animationSequence();
+    observerRef.current = observer;
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
   }, []);
 
-  // 当筛选条件改变时，重新触发动画
-  useEffect(() => {
-    if (activeFilter !== 'All') {
-      setAnimationStage(0);
-      const timer = setTimeout(() => {
-        setAnimationStage(1);
-        setTimeout(() => setAnimationStage(2), 200);
-        setTimeout(() => setAnimationStage(3), 400);
-      }, 100);
-      return () => clearTimeout(timer);
+  // 观察行元素
+  const setRowRef = useCallback((element, rowIndex) => {
+    if (element && observerRef.current) {
+      element.dataset.rowIndex = rowIndex;
+      observerRef.current.observe(element);
+      rowRefs.current[rowIndex] = element;
     }
-  }, [activeFilter]);
+  }, []);
 
   const filterOptions = ['All', 'Branding', 'Digital', 'Motion', 'Graphic', 'Typography', 'Generative Art', 'AIGC'];
 
@@ -101,20 +104,31 @@ const InspirationPage = () => {
     return path;
   };
 
-  // 获取项目所在的列（0: 第一列, 1: 第二列, 2: 第三列）
-  const getColumnIndex = (index) => index % 3;
+  // 获取项目所在的行
+  const getRowIndex = (index) => Math.floor(index / 3);
+
+  // 获取项目在行内的位置（0, 1, 2）
+  const getPositionInRow = (index) => index % 3;
 
   // 获取动画类名
   const getAnimationClass = (index) => {
-    const columnIndex = getColumnIndex(index);
-    const shouldAnimate = animationStage > columnIndex;
+    const rowIndex = getRowIndex(index);
+    const positionInRow = getPositionInRow(index);
+    const isRowVisible = visibleRows.has(rowIndex);
     
-    return shouldAnimate 
-      ? `inspiration-item-enter inspiration-item-enter-active column-${columnIndex + 1}` 
-      : `inspiration-item-enter column-${columnIndex + 1}`;
+    return isRowVisible 
+      ? `inspiration-item-enter inspiration-item-enter-active position-${positionInRow}` 
+      : `inspiration-item-enter position-${positionInRow}`;
   };
 
-  // inspiration页面专注于快速加载cover，不需要复杂的预览图逻辑
+  // 将项目按行分组
+  const projectRows = useMemo(() => {
+    const rows = [];
+    for (let i = 0; i < displayedProjects.length; i += 3) {
+      rows.push(displayedProjects.slice(i, i + 3));
+    }
+    return rows;
+  }, [displayedProjects]);
 
   return (
     <div className="ml-80 min-h-screen bg-dark-bg">
@@ -142,47 +156,56 @@ const InspirationPage = () => {
       <div className="px-8 pb-8">
         {displayedProjects.length > 0 ? (
           <>
-            <div className="grid grid-cols-3 gap-6">
-              {displayedProjects.map((project, index) => (
-                <div
-                  key={project.id}
-                  ref={index === displayedProjects.length - 1 ? lastItemRef : null}
-                  className={`cursor-pointer group ${getAnimationClass(index)}`}
-                  onClick={() => setSelectedProject(project)}
-                >
-                  <div className="aspect-[4/5] bg-design-gray rounded-xl overflow-hidden mb-6 group-hover:opacity-80 transition-opacity">
-                    <LazyMedia
-                      src={getEncodedPath(project.cover)}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                      threshold={0.2} // 提前20%开始加载
-                      placeholder={
-                        <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                          <div className="spinner">
-                            <div className="bounce1"></div>
-                            <div className="bounce2"></div>
-                            <div className="bounce3"></div>
-                          </div>
-                        </div>
-                      }
-                    />
-                  </div>
-                  <h3 className="text-light-gray text-3xl font-medium mb-2.5 group-hover:opacity-80 transition-opacity uppercase">
-                    {project.title}
-                  </h3>
-                  <div className="flex flex-wrap gap-1.5 mb-8">
-                    {project.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className={`px-2 py-0.5 text-sm font-medium text-dark-bg rounded-md leading-tight ${getTagColor(tag)}`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+            {projectRows.map((row, rowIndex) => (
+              <div
+                key={`row-${rowIndex}`}
+                ref={(el) => setRowRef(el, rowIndex)}
+                className="grid grid-cols-3 gap-6 mb-6"
+              >
+                {row.map((project, positionInRow) => {
+                  const projectIndex = rowIndex * 3 + positionInRow;
+                  return (
+                    <div
+                      key={project.id}
+                      ref={projectIndex === displayedProjects.length - 1 ? lastItemRef : null}
+                      className={`cursor-pointer group ${getAnimationClass(projectIndex)}`}
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      <div className="aspect-[4/5] bg-design-gray rounded-xl overflow-hidden mb-6 group-hover:opacity-80 transition-opacity">
+                        <LazyMedia
+                          src={getEncodedPath(project.cover)}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                          threshold={0.2} // 提前20%开始加载
+                          placeholder={
+                            <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                              <div className="spinner">
+                                <div className="bounce1"></div>
+                                <div className="bounce2"></div>
+                                <div className="bounce3"></div>
+                              </div>
+                            </div>
+                          }
+                        />
+                      </div>
+                      <h3 className="text-light-gray text-3xl font-medium mb-2.5 group-hover:opacity-80 transition-opacity uppercase">
+                        {project.title}
+                      </h3>
+                      <div className="flex flex-wrap gap-1.5 mb-8">
+                        {project.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className={`px-2 py-0.5 text-sm font-medium text-dark-bg rounded-md leading-tight ${getTagColor(tag)}`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
             
             {/* 加载更多指示器 */}
             {isLoading && (
